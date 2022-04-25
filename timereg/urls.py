@@ -5,4 +5,6 @@ from . import views
 app_name = 'timereg'
 urlpatterns = [
     path('', views.CalendarView.as_view(), name='calendar'),
+    path('event/new/', views.event, name='event_new'),
+    path('event/<int:event_id>/edit/', views.event, name='event_edit'),
 ]
