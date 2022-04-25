@@ -3,10 +3,6 @@
 {% block title %} Work time register app {% endblock %}
 
 {% block content %}
-<div class="clearfix">
-    <a href="{% url 'timereg:calendar' %}?{{ prev_month }}" class="btn btn-info left"> Previous Month </a>
-    <a href="{% url 'timereg:calendar' %}?{{ next_month }}" class="btn btn-info right"> Next Month </a>
-    <a href="{% url 'timereg:event_new' %}" class="btn btn-info right"> New Event </a>
-</div>
+<br>
 {{ calendar }}
 {% endblock content %}

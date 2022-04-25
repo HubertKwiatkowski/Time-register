@@ -4,22 +4,15 @@
 
 {% block content %}
 <div class="container">
-    
-    <div class="clearfix">
-        <a href="{% url 'timereg:calendar' %}" class="btn btn-info left"> Calendar </a>
-    </div>
-    <h1>{{ form.date }}</h1>
+    <br>
     <form method="post">
-        {% csrf_token %}
-        <table class="form form-table">
-            <div>{{ form.title }}</div>
-            <div>{{ form.description }}</div>
-            <div>{{ form.start_time }}</div>
-            <div>{{ form.end_time }}</div>
-            <tr><td colspan="2">
-                <input class="btn btn-secondary right" type="submit" value="Save">
-            </td></tr>
-        </table>
+    {% csrf_token %}
+    <table class="form form-table">
+        {{ form }}
+        <tr><td colspan="2">
+            <button class="btn btn-secondary right" type="submit">Submit</button>
+        </td></tr>
+    </table>
     </form>
 </div>
 {% endblock content %}

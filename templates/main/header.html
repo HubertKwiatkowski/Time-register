@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         
-        <a class="navbar-brand" href="#">Navbar</a>
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,17 +10,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                <li>
+                    <a href="{% url 'timereg:calendar' %}?{{ prev_month }}" class="nav-link"> Previous Month </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Learning</a>
+                <li>
+                    <a href="{% url 'timereg:calendar' %}?{{ next_month }}" class="nav-link"> Next Month </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Quiz</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Test</a>
+                <li>
+                    <a href="{% url 'timereg:event_new' %}" class="nav-link"> New Event </a>
                 </li>
             </ul>
         </div>

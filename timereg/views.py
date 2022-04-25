@@ -11,10 +11,6 @@ from .utils import Calendar
 from .forms import EventForm
 
 
-# Create your views here.
-# def index(request):
-#     return render(request, 'timereg/index.html')
-
 class CalendarView(generic.ListView):
     model = Event
     template_name = 'timereg/index.html'
@@ -69,7 +65,7 @@ def event_new(request, event_id=None):
     context = {
         'form': form
     }
-    return render(request, 'timereg/event_add.html', context)
+    return render(request, 'timereg/event.html', context)
 
 def event_edit(request, event_id):
     event = Event.objects.get(id=event_id)
@@ -83,4 +79,4 @@ def event_edit(request, event_id):
     context = {
         'form': form,
     }
-    return render(request, 'timereg/event_edit.html', context)
+    return render(request, 'timereg/event.html', context)
