@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, date
-
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
@@ -25,8 +24,6 @@ class CalendarView(generic.ListView):
 
         # use today's date for the calendar
         d = get_date(self.request.GET.get('month', None))
-    
-        # d = get_date(self.request.GET.get('day', None))
 
         # Instantiate calendar class with today's year and date
         cal = Calendar(d.year, d.month)
@@ -60,7 +57,7 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
-def event(request, event_id=None):
+def event_new(request, event_id=None):
     instance = Event()
     if event_id:
         instance = get_object_or_404(Event, pk=event_id)
@@ -72,4 +69,18 @@ def event(request, event_id=None):
     context = {
         'form': form
     }
-    return render(request, 'timereg/event.html', context)
+    return render(request, 'timereg/event_add.html', context)
+
+def event_edit(request, event_id):
+    event = Event.objects.get(id=event_id)
+    if request.method == 'GET':
+        form = EventForm(instance=event)
+    else:
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'form': form,
+    }
+    return render(request, 'timereg/event_edit.html', context)

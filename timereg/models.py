@@ -1,14 +1,14 @@
 from django.db import models
 from django.urls import reverse
+from .widget import *
 
-# Create your models here.
 
 class Event(models.Model):
-    title = models.CharField(max_length=200)
-    owner = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField()
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    title = models.CharField(max_length=200, default="Czas pracy")
+    description = models.TextField(blank=True, null=True)
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
 
     @property
     def get_html_url(self):
